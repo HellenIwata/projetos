@@ -30,6 +30,7 @@ class Create_functions_btn(Config_sqlite):
         self.cursor.execute(insert_db, (self.name, self.email, self.phone, self.city))
         
         self.conn.commit()
+        print('Cadastro realizada com sucesso\n')
         self.desconnect_db()
         
         self.select_client_list() # Atualiza a lista de clientes para mostrar os dados do novo cliente cadastrado
@@ -49,6 +50,7 @@ class Create_functions_btn(Config_sqlite):
         
         for cliente in lista:
             self.client_list.insert('',  END, values=cliente)
+        print('Seleção realizada com sucesso\n')
         
         self.desconnect_db()
         
@@ -74,7 +76,26 @@ class Create_functions_btn(Config_sqlite):
         
         self.cursor.execute(deleta_cliente, (self.code))
         self.conn.commit()
+        print('Exclusão realizada com sucesso\n')
         
         self.desconnect_db()
         self.clear_screen()
         self.select_client_list()
+        
+        
+    def client_alter(self):
+        self.variaveis()
+        self.connect_db()
+        
+        alterar_cliente = ''' UPDATE cliente SET  nome_cliente=?, telefone=?, email=?, cidade=?
+            WHERE id=?'''
+        
+        print(f'Verificando a conexão antes de realizar a alteração do cliente\n{alterar_cliente}\n')
+        self.cursor.execute(alterar_cliente, (self.name, self.phone, self.email, self.city, self.code))
+        self.conn.commit()
+        print('Alteração realizada com sucesso\n')
+        
+        
+        self.desconnect_db()
+        self.select_client_list()
+        self.clear_screen()
