@@ -48,21 +48,18 @@ class Frontend_configuaration_frame(Create_functions_btn, Config_sqlite):
         
         #Definindo os BOTÕES
         
-        ##Botão NOVO
-        self.btn_new = Button(self.frame_top, text='NOVO', border=5, bg='#142952', fg='#FFF', font=('Corbel',8,'bold'))
-        self.btn_new.place(relx=0.2, rely=0.12, relwidth=0.1, relheight=0.1)
-        
         ##Botão BUSCAR
         self.btn_search = Button(self.frame_top, text='BUSCAR', border=5, bg='#142952', fg='#FFF', font=('Corbel',8,'bold'))
-        self.btn_search.place(relx=0.305, rely=0.12, relwidth=0.1, relheight=0.1)
+        self.btn_search.place(relx=0.2, rely=0.12, relwidth=0.1, relheight=0.1)
         
         ##Botão LIMPAR
         self.btn_clear = Button(self.frame_top, text='LIMPAR', border=5, bg='#142952', fg='#FFF', font=('Corbel',8,'bold'), 
             command=self.clear_screen)
-        self.btn_clear.place(relx=0.6, rely=0.12, relwidth=0.1, relheight=0.1)
+        self.btn_clear.place(relx=0.305, rely=0.12, relwidth=0.1, relheight=0.1)
         
         ##Botão ALTERAR
-        self.btn_alter = Button(self.frame_top, text='ALTERAR', border=5, bg='#142952', fg='#FFF', font=('Corbel',8,'bold'))
+        self.btn_alter = Button(self.frame_top, text='ALTERAR', border=5, bg='#142952', fg='#FFF', font=('Corbel',8,'bold'),
+            command=self.client_alter)
         self.btn_alter.place(relx=0.705, rely=0.12, relwidth=0.1, relheight=0.1)
         
         ##Botão EXCLUIR
