@@ -1,17 +1,19 @@
 from tkinter import *
+from tkinter import ttk 
 
 class Frontend_configuaration_frame():
     def __init__(self):
         self.window = Tk()
-        
+        # self.style = ttk.Style()
         self.create_config_window()
         self.create_frame_window()
         self.create_widgets_frame_top()
+        self.create_list_frame_button()
         
         
         
         self.window.mainloop()
-        
+    
     def create_config_window(self):
         '''Criação da configurações da janela'''
         #Titulo da Janela
@@ -36,7 +38,7 @@ class Frontend_configuaration_frame():
         #Estilo, tamanho e posição do primeiro frame
         self.frame_button = Frame(self.window, bg='#C2D1F0', border=3, highlightbackground='#3366CC',highlightthickness=4)
         self.frame_button.place(relx=0.02, rely=0.50, relwidth=0.96, relheight=0.475)
-        
+    
     def create_widgets_frame_top(self):
         ''' Criação dos botões, labels e entrys do primeiro frame: frame_top '''
         
@@ -72,22 +74,69 @@ class Frontend_configuaration_frame():
         self.lb_code = Label(self.frame_top, text='CÓDIGO', bg='#C2D1F0', fg='#142952', font=('Bahnschrift SemiBold', 10, 'bold'))
         self.lb_code.place(relx=0.03, rely=0.05)
         
+        ##Entry CODIGO
+        self.ent_code = Entry(self.frame_top, bg='#eaf0fa', font=("Arial", 8))
+        self.ent_code.place(relx=0.03, rely=0.15, relwidth=0.1)
+        
+        
         ##Label NOME
         self.lb_name = Label(self.frame_top, text='NOME', bg='#C2D1F0', fg='#142952', font=('Bahnschrift SemiBold', 10, 'bold'))
         self.lb_name.place(relx=0.03, rely=0.30)
         
+        ##Entry NOME
+        self.ent_name = Entry(self.frame_top, bg='#eaf0fa', font=("Arial", 8))
+        self.ent_name.place(relx=0.03, rely=0.4, relwidth=0.88)
+        
+        
         ##Label TELEFONE
         self.lb_phone = Label(self.frame_top, text='TELEFONE', bg='#C2D1F0', fg='#142952', font=('Bahnschrift SemiBold', 10, 'bold'))
-        self.lb_phone.place(relx=0.03, rely=0.60)
+        self.lb_phone.place(relx=0.03, rely=0.55)
+        
+        ##Entry TELEFONE
+        self.ent_phone = Entry(self.frame_top, bg='#eaf0fa', font=("Arial", 8))
+        self.ent_phone.place(relx=0.03, rely=0.65, relwidth=0.20)
+        
         
         ##Label E-MAIL
         self.lb_email = Label(self.frame_top, text='E-MAIL', bg='#C2D1F0', fg='#142952', font=('Bahnschrift SemiBold', 10, 'bold'))
-        self.lb_email.place(relx=0.35, rely=0.60)
+        self.lb_email.place(relx=0.3, rely=0.55)
+        
+        ##Entry E-MAIL
+        self.ent_email = Entry(self.frame_top, bg='#eaf0fa', font=("Arial", 8))
+        self.ent_email.place(relx=0.3, rely=0.65, relwidth=0.25)
+        
         
         ##Label CIDADE
         self.lb_city = Label(self.frame_top, text='CIDADE', bg='#C2D1F0', fg='#142952', font=('Bahnschrift SemiBold', 10, 'bold'))
-        self.lb_city.place(relx=0.65, rely=0.60)
+        self.lb_city.place(relx=0.65, rely=0.55)
         
+        ##Entry CIDADE
+        self.ent_city = Entry(self.frame_top, bg='#eaf0fa', font=("Arial", 8))
+        self.ent_city.place(relx=0.65, rely=0.65, relwidth=0.255)    
         
+    def create_list_frame_button(self):
+        '''Cria o frame inferior que contem a lista de clientes'''
         
+        self.client_list = ttk.Treeview(self.frame_button, displaycolumns=(1,2,3,4,5), columns=(1,2,3,4,5),
+                                        show='headings', selectmode='extended', padding=10)        
+        #Cabeçalho da tabela
+        # self.client_list.heading(0, text=' ')
+        self.client_list.heading(1, text='ID')
+        self.client_list.heading(2, text= 'NOME')
+        self.client_list.heading(3, text= 'TELEFONE')
+        self.client_list.heading(4, text='EMAIL')
+        self.client_list.heading(5, text='CIDADE')
+        
+        # self.client_list.column(0, anchor='w', width=50)
+        self.client_list.column(1, anchor='center', width=10)
+        self.client_list.column(2, anchor='center', width=150) 
+        self.client_list.column(3, anchor='center', width=75)   
+        self.client_list.column(4, anchor='center', width=150)
+        self.client_list.column(5, anchor='center', width=55)
+        
+        # self.client_list.insert('', 'end', iid=1, values=(1,'Hellen Cristina','11930889923','hiwata001@icloud.com','SP'))
+        
+        self.client_list.place(relx=0.02, rely=0.02, relwidth=0.97, relheight=0.94)
+        
+
 Frontend_configuaration_frame()
