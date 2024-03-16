@@ -1,8 +1,8 @@
 from tkinter import *
 import sqlite3
+import os
 
 class Config_sqlite():
-    
     def connect_db(self):
         '''Função responsável por conectar na base de dados "clientes.db" '''
         
@@ -36,3 +36,54 @@ class Config_sqlite():
         print('Banco de dados criado\n')
         
         self.desconnect_db()
+        
+        os.system('cls')
+    
+    def insert_data(self):
+        os.system('cls')
+        insert_data = '''INSERT INTO cliente(nome_cliente, email, telefone, cidade)
+            VALUES( ?,?,?,?);'''
+        
+        print(f'Validando o script de insert antes da execução\n{insert_data}\n')
+        
+        self.cursor.execute(insert_data,(self.name, self.email, self.phone, self.city))
+        self.conn.commit()
+        print('\nCadastro relizado com sucesso\n')
+    
+    def select_data(self):
+        os.system('cls')
+        #ORDER BY nome_cliente ASC responsável por chamar a lista em ordem alfabética
+        select_data = '''SELECT id, nome_cliente, email, telefone, cidade FROM cliente 
+            ORDER BY nome_cliente ASC;'''
+        
+        print(f'Validando o script de seleção antes da execução\n{select_data}\n')
+        
+        tb_client = self.cursor.execute(select_data)
+        
+        for cliente in tb_client:
+            self.client_list.insert('',  END, values=cliente)
+        print('Seleção realizada com sucesso\n')
+    
+    def alter_data(self):
+        os.system('cls')
+        update_data = '''UPDATE cliente SET nome_cliente= ?, telefone=?, email=?, cidade=?
+            WHERE id=?'''
+        
+        print(f'Validando o script de atualização antes da execução\n{update_data}\n')
+        self.cursor.execute(update_data, (self.name, self.phone, self.email, self.city, self.code))
+        self.conn.commit()
+        
+        print('Alteração realizada com sucesso\n')        
+
+    def delete_data(self):
+        os.system('cls')
+        delete_data = '''DELETE FROM cliente 
+            WHERE id = ?'''
+        print(f'Validando o script de exclusão antes da execução\n{delete_data}\n')
+    
+        self.cursor.execute(delete_data, (self.code))
+        self.conn.commit()
+    
+        print('Exclusão realizada com sucesso\n')
+
+    
