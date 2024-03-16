@@ -12,11 +12,37 @@ class Frontend_configuaration_frame(Create_functions_btn, Config_sqlite):
         self.create_frame_window()
         self.create_widgets_frame_top()
         self.create_list_frame_button()
-        
         self.create_tb_client()
         self.select_client_list()
+        self.header()
         
         self.window.mainloop()
+    
+    def header(self):
+        '''Função responsável por configurar o menu superior da aplicação'''
+        
+        menu_bar = Menu(self.window)
+        self.window.configure(menu=menu_bar)
+        
+        #Necessário criar uma variável para cada menu que deseja adicionar
+        file_menu = Menu(menu_bar, tearoff=0)
+        option_menu = Menu(menu_bar, tearoff=0)
+        help_menu = Menu(menu_bar, tearoff=0)
+        #sub_menu = Menu(option_menu, tearoff=0) #Opção para adicionar um submenu
+
+        #Com o .add_cascade > Se cria o nome de cada menu principal
+        #Com o .add_command > Se cria os comandos e os menus secundarios de cada menu
+        menu_bar.add_cascade(label="Arquivo", underline=0, menu=file_menu) #Criando o Menu
+        file_menu.add_command(label='Sair', command=self.window.destroy) #Criando as opções dentro do menu
+        
+        menu_bar.add_cascade(label='Opções', underline=0, menu=option_menu)
+        option_menu.add_command(label='Limpar Campos', command=self.clear_screen)
+        #Adicionando o SubMenu no menu opções
+        #sub_menu.add_command(label='')
+        
+        menu_bar.add_cascade(label='Ajuda', underline=0, menu=help_menu)
+        help_menu.add_command(label='Bem-Vindo')
+        help_menu.add_command(label='About...')
     
     def create_config_window(self):
         '''Criação da configurações da janela'''
@@ -143,5 +169,7 @@ class Frontend_configuaration_frame(Create_functions_btn, Config_sqlite):
         self.client_list.place(relx=0.02, rely=0.02, relwidth=0.97, relheight=0.94)
         
         self.client_list.bind('<Double-1>', self.on_double_click)
+        
+    
 
 Frontend_configuaration_frame()
