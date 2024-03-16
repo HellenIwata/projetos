@@ -19,18 +19,18 @@ class Relatorios():
         self.c = canvas.Canvas(f'D:\projetos\python\pdf_clientes_base\{self.name_rel}.pdf')
         
         #Definindo  a fonte e o tamanho da fonte
-        self.c.setFont('Helvetica', 18)
+        self.c.setFont('Helvetica-Bold', 18)
         #Definindo o texto de titulo
-        self.c.drawString(50, 780, "Informações do Cliente")
-        self.c.drawString(50, 730, f"Código: {self.code_rel}")
+        self.c.drawString(200, 780, 'Informações do Cliente')
+        self.c.drawString(50, 710, f'Código: {self.code_rel}')
         self.c.line(50, 690, 550, 690) #Linha separadora de informações pessoais e contato
         
         
         self.c.setFont('Helvetica', 12)
-        self.c.drawString(70, 660, f"Nome: {self.name_rel}")
-        self.c.drawString(70, 630, f"Telefone: {self.phone_rel}")
-        self.c.drawString(70, 600, f"E-mail: {self.email_rel}")
-        self.c.drawString(70, 570, f"Cidade: {self.city_rel}")
+        self.c.drawString(70, 660, f'Nome: {self.name_rel}')
+        self.c.drawString(70, 630, f'Telefone: {self.phone_rel}')
+        self.c.drawString(70, 600, f'E-mail: {self.email_rel}')
+        self.c.drawString(70, 570, f'Cidade: {self.city_rel}')
         
         
         self.c.showPage()
