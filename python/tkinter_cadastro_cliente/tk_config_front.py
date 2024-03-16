@@ -3,8 +3,9 @@ from tkinter import ttk
 
 from config_back.config_btn_frame_top import Create_functions_btn
 from config_back.config_db import Config_sqlite
+from config_back.gera_pdf import Relatorios
 
-class Frontend_configuaration_frame(Create_functions_btn, Config_sqlite):
+class Frontend_configuaration_frame(Create_functions_btn, Config_sqlite, Relatorios):
     def __init__(self):
         self.window = Tk()
         # self.style = ttk.Style()
@@ -37,6 +38,8 @@ class Frontend_configuaration_frame(Create_functions_btn, Config_sqlite):
         
         menu_bar.add_cascade(label='Opções', underline=0, menu=option_menu)
         option_menu.add_command(label='Limpar Campos', command=self.clear_screen)
+        option_menu.add_command(label='Gerar PDF', command=self.gera_relatorio_cliente)
+        
         #Adicionando o SubMenu no menu opções
         #sub_menu.add_command(label='')
         
@@ -153,16 +156,16 @@ class Frontend_configuaration_frame(Create_functions_btn, Config_sqlite):
         # self.client_list.heading(0, text=' ')
         self.client_list.heading(1, text='ID')
         self.client_list.heading(2, text= 'NOME')
-        self.client_list.heading(3, text= 'TELEFONE')
-        self.client_list.heading(4, text='EMAIL')
+        self.client_list.heading(3, text= 'E-MAIL')
+        self.client_list.heading(4, text='TELEFONE')
         self.client_list.heading(5, text='CIDADE')
         
         # self.client_list.column(0, anchor='w', width=50)
         self.client_list.column(1, anchor='center', width=10)
-        self.client_list.column(2, anchor='center', width=150) 
-        self.client_list.column(3, anchor='center', width=75)   
-        self.client_list.column(4, anchor='center', width=150)
-        self.client_list.column(5, anchor='center', width=55)
+        self.client_list.column(2, anchor='n', width=150) 
+        self.client_list.column(3, anchor='n', width=150)   
+        self.client_list.column(4, anchor='center', width=75)
+        self.client_list.column(5, anchor='center', width=30)
         
         # self.client_list.insert('', 'end', iid=1, values=(1,'Hellen Cristina','11930889923','hiwata001@icloud.com','SP'))
         
