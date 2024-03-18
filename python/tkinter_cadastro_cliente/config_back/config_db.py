@@ -1,6 +1,7 @@
 from tkinter import *
 import sqlite3
 import os
+from tkinter.messagebox import showerror
 
 class Config_sqlite():
     def connect_db(self):
@@ -86,4 +87,25 @@ class Config_sqlite():
     
         print('Exclusão realizada com sucesso\n')
 
+    def search_data(self):
+        os.system('cls')
+        name = self.ent_name.get()
+        
+        if name:
+            search_data = ('''
+            SELECT id, nome_cliente, email, telefone, cidade FROM cliente
+            WHERE nome_cliente
+            LIKE "%s"
+            ORDER BY nome_cliente ASC'''
+            % name)
+        
+        print(f'Validando o script de busca antes da execução\n{search_data}\n')
+        
+        self.cursor.execute(search_data)
+        search = self.cursor.fetchall() # .fetchall() = Função utilizada para retornar uma lista de tuplas, onde cada tupla representa uma linha da tabela do banco de dados. Neste caso, ele obtém todos os resultados da consulta SQL executada anteriormente.
+        for cliente in search:
+            self.client_list.insert('', END, values=cliente)
+        else:
+            showerror("Erro", "Nenhum resultado encontrado")
+    
     

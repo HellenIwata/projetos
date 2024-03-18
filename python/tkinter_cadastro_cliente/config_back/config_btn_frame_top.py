@@ -65,3 +65,17 @@ class Create_functions_btn(Config_sqlite):
         self.connect_db()
         self.alter_data()
         self.functions()
+        
+    def client_search(self):
+        self.connect_db()
+        
+        self.client_list.delete(*self.client_list.get_children())
+        self.ent_name.insert(END, '%') # usada para adicionar um caractere especial (%) no final do conteúdo do widget self.ent_name para facilitar a busca de dados no banco de dados, uma vez que o caractere % é frequentemente usado como um caractere curinga em consultas SQL para representar um conjunto de caracteres desconhecidos.
+        
+        self.search_data()
+        
+        self.clear_screen()
+        
+        self.desconnect_db()
+        
+        

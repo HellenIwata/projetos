@@ -78,7 +78,8 @@ class Frontend_configuaration_frame(Create_functions_btn, Config_sqlite, Relator
         #Definindo os BOTÕES
         
         ##Botão BUSCAR
-        self.btn_search = Button(self.frame_top, text='BUSCAR', border=5, bg='#142952', fg='#FFF', font=('Corbel',8,'bold'))
+        self.btn_search = Button(self.frame_top, text='BUSCAR', border=5, bg='#142952', fg='#FFF', font=('Corbel',8,'bold'), 
+            command=self.client_search)
         self.btn_search.place(relx=0.2, rely=0.12, relwidth=0.1, relheight=0.1)
         
         ##Botão LIMPAR
